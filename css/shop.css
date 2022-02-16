@@ -1,0 +1,20 @@
+body {
+    position: relative;
+    top: -25px;
+}
+
+.shop__wrap {
+    position: relative;
+    top: 120px;
+    max-width: 1060px;
+    margin: 0 auto;
+    width: 90%;
+}
+.shop__title {
+    font-family: "Amatic", sans-serif;
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: 3px;
+    padding: 50px 0 20px 0;
+    text-align: center;
+}
