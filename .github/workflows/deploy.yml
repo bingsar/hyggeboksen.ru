@@ -41,4 +41,4 @@ jobs:
       - run: npm ci
       - run: npm run build
       # Deploy
-      - run: cd dist && rsync --archive --compress --delete . /hyggeboksenTM/public_html/
+      - run: cd dist && rsync --archive --compress --delete . jumpinto@hyggeboksen.ru:/hyggeboksenTM/public_html/
