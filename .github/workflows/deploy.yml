@@ -32,6 +32,5 @@ jobs:
       - run: npm run build
       # Deploy
       - run: ssh -tt ${{ secrets.USERNAME }}@${{ secrets.HOST }}
-          shell: bash {0}
-      - run: send ${{ secrets.PASSWORD }}
+      - run: ${{ secrets.PASSWORD }}
       - run: cd dist && rsync --archive --compress --delete . /hyggeboksenTM/public_html/
