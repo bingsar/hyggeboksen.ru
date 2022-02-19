@@ -42,4 +42,4 @@ jobs:
       - run: npm ci
       - run: npm run build
       # Deploy
-      - run: cd dist && sshpass -p "ekfihariuf" rsync -ae "ssh -p remote_port_ssh" /Users/tonyrush/WebstormProjects/hyggeboksen_TM jumpinto@hyggeboksen.ru:/hyggeboksenTM/public_html/
+      - run: cd dist && sshpass -p "ekfihariuf" rsync -ae "ssh -p 22" /Users/tonyrush/WebstormProjects/hyggeboksen_TM jumpinto@hyggeboksen.ru:/hyggeboksenTM/public_html/
