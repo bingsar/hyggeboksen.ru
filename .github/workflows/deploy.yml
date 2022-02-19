@@ -15,6 +15,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
+          node-version: ${{ matrix.node-version }}
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
@@ -25,11 +26,12 @@ jobs:
 #      - run: mkdir "$HOME/.ssh"
 #      - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
 #      - run: chmod 600 "$HOME/.ssh/key"
-      -
+
       # Build
       - run: npm ci
       - run: npm run build
       # Deploy
-      - run: spawn ssh "USERNAME@$HOST"
+      - run: spawn ssh "USERNAME@HOST"
       - run: send "PASSWORD"
+      - run: interact
       - run: cd dist && rsync --archive --compress --delete . /hyggeboksenTM/public_html/
