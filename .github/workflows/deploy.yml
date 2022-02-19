@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+
+#      # Setup key
+#      - run: set -eu
+#      - run: mkdir "$HOME/.ssh"
+#      - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
+#      - run: chmod 600 "$HOME/.ssh/key"
+      -
+      # Build
+      - run: npm ci
+      - run: npm run build
+      # Deploy
+      - run: spawn ssh "USERNAME@$HOST"
+      - run: send "PASSWORD"
+      - run: cd dist && rsync --archive --compress --delete . /hyggeboksenTM/public_html/
