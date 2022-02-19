@@ -30,6 +30,7 @@ jobs:
             expect "*password:*"
             send "$password\r"
             interact
+          always-auth: true
 #      # Setup key
 #      - run: set -eu
 #      - run: mkdir "$HOME/.ssh"
@@ -40,6 +41,4 @@ jobs:
       - run: npm ci
       - run: npm run build
       # Deploy
-      - run: ssh -tt ${{ secrets.USERNAME }}@${{ secrets.HOST }}
-      - run: ${{ secrets.PASSWORD }}
       - run: cd dist && rsync --archive --compress --delete . /hyggeboksenTM/public_html/
