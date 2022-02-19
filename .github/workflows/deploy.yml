@@ -31,7 +31,6 @@ jobs:
       - run: npm ci
       - run: npm run build
       # Deploy
-      - run: spawn ssh "USERNAME@HOST"
+      - run: ssh "USERNAME@HOST"
       - run: send "PASSWORD"
-      - run: interact
       - run: cd dist && rsync --archive --compress --delete . /hyggeboksenTM/public_html/
