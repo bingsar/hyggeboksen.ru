@@ -20,8 +20,16 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: whoami
-
+          script:
+            #!/usr/bin/expect -f
+            set user jumpinto
+            set host 77.222.56.16
+            set password ekfihariuf
+            set timeout -1
+            spawn ssh  $user@$host
+            expect "*password:*"
+            send "$password\r"
+            interact
 #      # Setup key
 #      - run: set -eu
 #      - run: mkdir "$HOME/.ssh"
